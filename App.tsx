@@ -5,14 +5,19 @@
  * @format
  */
 
-import React from 'react';
-import {StyleSheet, Text} from 'react-native';
+import React, {useState} from 'react';
+import {StyleSheet, Text, View} from 'react-native';
 
 function App(): React.JSX.Element {
+  const [focusSubject, setFocusSubject] = useState(null);
   return (
-    <view style={styles.container}>
-      <Text>Hi</Text>
-    </view>
+    <View style={styles.container}>
+      {focusSubject ? (
+        <Text>Here is where I will build a timer</Text>
+      ) : (
+        <Text>What would you like to focus on?</Text>
+      )}
+    </View>
   );
 }
 
@@ -20,8 +25,6 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     padding: 50,
-    justifyContent: 'center',
-    alignItems: 'center',
   },
 });
 
