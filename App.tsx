@@ -7,6 +7,7 @@
 
 import React, {useState} from 'react';
 import {StyleSheet, Text, View} from 'react-native';
+import {Focus} from './src/features/focus/Focus';
 
 function App(): React.JSX.Element {
   const [focusSubject, setFocusSubject] = useState(null);
@@ -15,7 +16,7 @@ function App(): React.JSX.Element {
       {focusSubject ? (
         <Text>Here is where I will build a timer</Text>
       ) : (
-        <Text>What would you like to focus on?</Text>
+        <Focus />
       )}
     </View>
   );
@@ -24,7 +25,7 @@ function App(): React.JSX.Element {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    padding: 50,
+    backgroundColor: '#db9d00',
   },
 });
 
