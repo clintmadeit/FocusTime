@@ -5,6 +5,7 @@ import {RoundedButton} from '../../components/RoundedButton';
 import {spacing} from '../../utils/spacing';
 import {margins} from '../../utils/margins';
 import {fontSize} from '../../utils/fontSize';
+import {colors} from '../../utils/colors';
 
 export const Focus = ({addSubject}) => {
   const [tmpItem, setTmpItem] = useState(null);
@@ -40,7 +41,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   title: {
-    color: 'white',
+    color: colors.white,
     fontWeight: 'bold',
     fontSize: fontSize.lg,
   },

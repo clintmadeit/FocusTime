@@ -5,4 +5,5 @@ export const fontSize = {
   xl: 26,
   xxl: 32,
   xxxl: 40,
+  xxxxl: 80,
 };
