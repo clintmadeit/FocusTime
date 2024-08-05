@@ -25,11 +25,12 @@ const styles = size =>
       width: size,
       height: size,
       alignItems: 'center',
-      borderColor: colors.white,
+      borderColor: colors.golden,
       borderWidth: 2,
       justifyContent: 'center',
     },
     text: {
-      color: colors.white,
+      color: colors.golden,
+      fontSize: size / 3,
     },
   });
