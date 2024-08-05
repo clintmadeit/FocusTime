@@ -20,7 +20,7 @@ import {
   deactivateKeepAwake,
 } from '@sayem314/react-native-keep-awake';
 
-export const Timer = ({focusSubject}) => {
+export const Timer = ({focusSubject, onTimerEnd, clearSubject}) => {
   const [minutes, setMinutes] = useState(DEFAULT_TIME);
   const [isStarted, setIsStarted] = useState(false);
   const [progress, setProgress] = useState(1);
@@ -38,7 +38,8 @@ export const Timer = ({focusSubject}) => {
     setProgress(1);
     vibrate();
     setIsStarted(false);
-  }, []);
+    onTimerEnd();
+  }, [onTimerEnd]);
 
   const vibrate = () => {
     if (Platform.OS === 'ios') {
@@ -132,6 +133,15 @@ export const Timer = ({focusSubject}) => {
           <RoundedButton title="start" onPress={() => setIsStarted(true)} />
         )}
       </View>
+      <View style={styles.clearSubject}>
+        <RoundedButton
+          title="-"
+          size={50}
+          onPress={() => {
+            clearSubject();
+          }}
+        />
+      </View>
     </View>
   );
 };
@@ -184,5 +194,9 @@ const styles = StyleSheet.create({
     marginRight: spacing.md,
     paddingHorizontal: spacing.md,
     width: '40%',
+  },
+  clearSubject: {
+    paddingBottom: spacing.md,
+    paddingLeft: spacing.md,
   },
 });
