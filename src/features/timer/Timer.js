@@ -1,4 +1,12 @@
-import {View, Text, StyleSheet, TextInput, Animated} from 'react-native';
+import {
+  View,
+  Text,
+  StyleSheet,
+  TextInput,
+  Animated,
+  Vibration,
+  Platform,
+} from 'react-native';
 import React, {useState, useCallback, useRef, useEffect} from 'react';
 import {ProgressBar} from 'react-native-paper';
 
@@ -13,7 +21,7 @@ import {
 } from '@sayem314/react-native-keep-awake';
 
 export const Timer = ({focusSubject}) => {
-  const [minutes, setMinutes] = useState(0.1);
+  const [minutes, setMinutes] = useState(DEFAULT_TIME);
   const [isStarted, setIsStarted] = useState(false);
   const [progress, setProgress] = useState(1);
   const [customMinutes, setCustomMinutes] = useState('');
@@ -24,11 +32,22 @@ export const Timer = ({focusSubject}) => {
     setProgress(progress);
   }, []);
 
+  const DEFAULT_TIME = 1;
   const onEnd = useCallback(() => {
-    setMinutes(0);
+    setMinutes(DEFAULT_TIME);
     setProgress(1);
+    vibrate();
     setIsStarted(false);
   }, []);
+
+  const vibrate = () => {
+    if (Platform.OS === 'ios') {
+      const interval = setInterval(() => Vibration.vibrate(), 1000);
+      setTimeout(() => clearInterval(interval), 10000);
+    } else {
+      Vibration.vibrate([500, 500, 500, 500, 500, 500, 500, 500, 500, 500]);
+    }
+  };
 
   const changeTime = min => {
     setMinutes(min);
